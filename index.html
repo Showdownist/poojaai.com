@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P.O.O.J.A</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: black;
+            width: 375px;
+            max-width: 100%;
+            border: 1px solid rgb(245, 80, 231);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: auto; /* Allow overflow to be visible */
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+
+        .header {
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.5em;
+            background-color: black;
+            border-bottom: 1px solid rgb(237, 57, 243);
+            color: white;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: center;
+            margin-top: 20px; /* Add space above the buttons */
+        }
+
+        .button {
+            display: block;
+            width: 90%;
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button.speak {
+            background-color: #f840e0;
+        }
+
+        .button.listen {
+            background-color: white;
+            color: #000;
+        }
+
+        .button.instructions {
+            background-color: red;
+            color: white;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .note {
+            font-size: 14px;
+            color: white;
+            background-color: #333;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #fff;
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 400px) {
+            .container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .button {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .header {
+                font-size: 1.2em;
+                padding: 10px;
+            }
+
+            .note {
+                font-size: 12px;
+            }
+        }
+
+        .input-container input {
+            padding: 10px;
+            width: 80%;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .input-container button {
+            padding: 10px;
+            background-color: rgb(28, 226, 28);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .input-container button:hover {
+            opacity: 0.9;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">P.O.O.J.A Emotional Support AI</div>
+        <div class="header"> <P style="font-size:small ;">Personalized Online Outreach for Joy and Assistance</P> </div>
+        <div class="image-container">
+            <img src="Animation.gif" alt="P.O.O.J.A">
+        </div>
+        <button class="button speak" onclick="loadScript('speak.js')">Let P.O.O.J.A Speak</button>
+        <button class="button listen" onclick="loadScript('listen.js')">Let P.O.O.J.A Listen</button>
+        <button class="button instructions" onclick="window.open('HOW TO USE.pdf')">Instructions</button>
+        <button class="button instructions" style="background-color: rgb(238, 238, 7); color: black;"><a style="color: black;" href="serious.html">Ask a Real Human</a></button>
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> Only one model can run at the time of loading the page. To switch models, please say "exit" and refresh the page, then choose the other model. Refresh the page if it's not working correctly.
+    </div>
+
+    <script>
+        function loadScript(scriptName) {
+            // Check if the script is already loaded
+            const existingScript = document.querySelector(`script[src="${scriptName}"]`);
+            if (existingScript) {
+                console.log(`${scriptName} is already loaded.`);
+                return;
+            }
+
+            // Create a new script element
+            const script = document.createElement('script');
+            script.src = scriptName;
+            script.type = 'text/javascript';
+
+            // Optional: Handle script load events
+            script.onload = () => console.log(`${scriptName} has been loaded successfully.`);
+            script.onerror = () => console.error(`Failed to load ${scriptName}.`);
+
+            // Append the script to the document
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>
