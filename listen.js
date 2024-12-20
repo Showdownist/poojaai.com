@@ -36,7 +36,7 @@ recognition.onresult = (event) => {
             speak("Please say 'yes' if you want me to listen, or 'exit' to quit.", startListening);
         }
     } else {
-        if (transcript.includes("Ma'am stop")) {
+        if (transcript.includes("Please stop")) {
             isListeningForProblems = false;
             speak("I heard everything. I understand your problem, and I know you have the ability to overcome it. I believe in you.", () => {
                 speak("Do you want me to continue listening?", startListening);
