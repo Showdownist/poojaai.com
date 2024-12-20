@@ -1,10 +1,11 @@
 // Initialize speech synthesis and speech recognition
 const synth = window.speechSynthesis;
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-recognition.continuous = true; // Keep listening continuously
-recognition.interimResults = false; // Only finalize results
+recognition.continuous = true;
+recognition.interimResults = false;
 
 let isListeningForProblems = false;
+let shouldStop = false;
 
 // Function to speak a given text
 function speak(text, callback) {
@@ -15,13 +16,15 @@ function speak(text, callback) {
 
 // Function to start or restart listening for user input
 function startListening() {
-    recognition.start();
-    console.log("Listening...");
+    if (!shouldStop) {
+        recognition.start();
+        console.log("Listening...");
+    }
 }
 
 // Function to handle recognition results
 recognition.onresult = (event) => {
-    const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
+    const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
     console.log("Heard:", transcript);
 
     if (!isListeningForProblems) {
@@ -29,6 +32,7 @@ recognition.onresult = (event) => {
             isListeningForProblems = true;
             speak("Okay, I am listening.", startListening);
         } else if (transcript.includes("exit")) {
+            shouldStop = true;
             speak("Goodbye, Dear. Take care!", () => recognition.stop());
         } else if (transcript.includes("thanks")) {
             speak("You're welcome, Dear! I'm always here for you.", startListening);
@@ -36,12 +40,13 @@ recognition.onresult = (event) => {
             speak("Please say 'yes' if you want me to listen, or 'exit' to quit.", startListening);
         }
     } else {
-        if (transcript.includes("Pooja stop")) {
+        if (transcript.includes("pooja stop")) {
             isListeningForProblems = false;
             speak("I heard everything. I understand your problem, and I know you have the ability to overcome it. I believe in you.", () => {
                 speak("Do you want me to continue listening?", startListening);
             });
         } else if (transcript.includes("exit")) {
+            shouldStop = true;
             speak("Goodbye, Dear. Take care!", () => recognition.stop());
         }
     }
@@ -50,13 +55,15 @@ recognition.onresult = (event) => {
 // Handle errors gracefully
 recognition.onerror = (event) => {
     console.error("Recognition error:", event.error);
-    speak("", startListening);
+    if (!shouldStop) {
+        setTimeout(startListening, 1000); // Delay restart on error
+    }
 };
 
 // Restart listening when recognition ends unexpectedly
 recognition.onend = () => {
-    if (isListeningForProblems) {
-        startListening();
+    if (!shouldStop) {
+        setTimeout(startListening, 1000);
     } else {
         console.log("Stopped listening.");
     }
