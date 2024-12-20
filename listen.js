@@ -1,4 +1,3 @@
-// Initialize speech synthesis and speech recognition
 const synth = window.speechSynthesis;
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.continuous = true;
@@ -7,7 +6,7 @@ recognition.interimResults = false;
 let isListeningForProblems = false;
 let shouldStop = false;
 
-// Array of responses for "I heard everything" line
+// Array of supportive responses
 // Array of supportive responses
 const supportiveResponses = [
     "I understand your struggle, and I know you have the strength to overcome it.",
@@ -110,13 +109,6 @@ const supportiveResponses = [
     "You can overcome this, and I believe in you."
 ];
 
-
-// Function to get a random supportive response
-function getRandomSupportiveResponse() {
-    const randomIndex = Math.floor(Math.random() * supportiveResponses.length);
-    return supportiveResponses[randomIndex];
-}
-
 // Function to speak a given text
 function speak(text, callback) {
     const utterance = new SpeechSynthesisUtterance(text);
@@ -152,12 +144,16 @@ recognition.onresult = (event) => {
     } else {
         if (transcript.includes("pooja stop")) {
             isListeningForProblems = false;
-            speak(getRandomSupportiveResponse(), () => {
+            const randomResponse = supportiveResponses[Math.floor(Math.random() * supportiveResponses.length)];
+            speak(randomResponse, () => {
                 speak("Do you want me to continue listening?", startListening);
             });
         } else if (transcript.includes("exit")) {
             shouldStop = true;
             speak("Goodbye, Dear. Take care!", () => recognition.stop());
+        } else {
+            // Keep listening if no specific command is given
+            startListening();
         }
     }
 };
@@ -173,7 +169,7 @@ recognition.onerror = (event) => {
 // Restart listening when recognition ends unexpectedly
 recognition.onend = () => {
     if (!shouldStop) {
-        setTimeout(startListening, 1000);
+        startListening(); // Immediately restart listening
     } else {
         console.log("Stopped listening.");
     }
