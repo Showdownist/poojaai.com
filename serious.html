@@ -29,7 +29,7 @@
             border: 1px solid rgb(245, 80, 231);
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: auto; /* Allow overflow to be visible */
+            overflow: auto;
             text-align: center;
             margin-bottom: 20px;
             padding-bottom: 20px;
@@ -51,9 +51,9 @@
 
         .button-container {
             display: flex;
-            flex-direction: column; /* Stack buttons vertically */
+            flex-direction: column;
             align-items: center;
-            margin-top: 20px; /* Add space above the buttons */
+            margin-top: 20px;
         }
 
         .button {
@@ -105,7 +105,6 @@
             border: 1px solid #fff;
         }
 
-        /* Media Query for smaller screens */
         @media (max-width: 400px) {
             .container {
                 width: 100%;
@@ -149,7 +148,6 @@
         .input-container button:hover {
             opacity: 0.9;
         }
-
     </style>
 </head>
 <body>
@@ -160,7 +158,8 @@
         </div>
         <!-- YouTube Search Section -->
         <div class="input-container">
-            <input type="text" id="searchQuery" placeholder="Enter your problem in short..." />
+            <input type="text" id="searchQuery" placeholder="Enter your problem in short..." aria-label="Search Query Input">
+            <button id="voiceInputBtn">🎤 Voice Input</button>
             <br>
             <button onclick="searchYouTube()">Press to ask an expert online</button>
             <br>
@@ -169,31 +168,48 @@
     </div>
 
     <div class="note">
-        <strong>Note:</strong> You will be redirected to real experts who can solve your problems. P.O.O.J.A  AI offers motivation and a supportive companion to help clear your mind, but complex issues are best addressed by humans.
+        <strong>Note:</strong> You will be redirected to real experts who can solve your problems. P.O.O.J.A AI offers motivation and a supportive companion to help clear your mind, but complex issues are best addressed by humans.
     </div>
 
     <script>
-        function loadScript(scriptName) {
-            // Check if the script is already loaded
-            const existingScript = document.querySelector(`script[src="${scriptName}"]`);
-            if (existingScript) {
-                console.log(`${scriptName} is already loaded.`);
-                return;
-            }
+        // Voice input functionality
+        const voiceInputBtn = document.getElementById('voiceInputBtn');
+        const searchQuery = document.getElementById('searchQuery');
 
-            // Create a new script element
-            const script = document.createElement('script');
-            script.src = scriptName;
-            script.type = 'text/javascript';
+        // Check if browser supports SpeechRecognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US'; // Set language
+            recognition.interimResults = false; // Get only final results
 
-            // Optional: Handle script load events
-            script.onload = () => console.log(`${scriptName} has been loaded successfully.`);
-            script.onerror = () => console.error(`Failed to load ${scriptName}.`);
+            voiceInputBtn.addEventListener('click', () => {
+                recognition.start(); // Start voice recognition
+                voiceInputBtn.textContent = '🎤 Listening...';
+            });
 
-            // Append the script to the document
-            document.body.appendChild(script);
+            recognition.addEventListener('result', (event) => {
+                const transcript = event.results[0][0].transcript; // Get recognized text
+                searchQuery.value = transcript; // Populate the input field
+                voiceInputBtn.textContent = '🎤 Voice Input';
+            });
+
+            recognition.addEventListener('end', () => {
+                voiceInputBtn.textContent = '🎤 Voice Input';
+            });
+
+            recognition.addEventListener('error', (event) => {
+                console.error('Speech recognition error:', event.error);
+                alert('Error recognizing speech. Please try again.');
+                voiceInputBtn.textContent = '🎤 Voice Input';
+            });
+        } else {
+            voiceInputBtn.disabled = true;
+            voiceInputBtn.title = 'Speech Recognition not supported in this browser.';
+            alert('Your browser does not support speech recognition. Please try another browser like Chrome.');
         }
 
+        // YouTube Search Functionality
         function searchYouTube() {
             const query = document.getElementById('searchQuery').value;
             if (query.trim() !== '') {
