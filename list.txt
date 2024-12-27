@@ -1,100 +1,100 @@
-1. Anxiety
-2. Depression
-3. Stress
-4. Pressure
-5. Sadness
-6. Loneliness
-7. Anger
-8. Guilt
-9. Shame
-10. Fear
-11. Isolation
-12. Fatigue
-13. Insomnia
-14. Grief
-15. Regret
-16. Envy
-17. Paranoia
-18. Overthinking
-19. Boredom
-20. Insecurity
-21. Perfectionism
-22. Dissociation
-23. Obsessions
-24. Compulsions
-25. Impulsivity
-26. Addiction
-27. Self-harm
-28. Eating disorder
-29. Body image issues
-30. Hoarding
-31. Mania
-32. Hypomania
-33. Psychosis
-34. Schizophrenia
-35. Borderline personality disorder
-36. Narcissism
-37. Antisocial behavior
-38. Avoidant behavior
-39. Dependent behavior
-40. Personality disorders
-41. Trauma
-42. PTSD
-43. Flashbacks
-44. Nightmares
-45. Confusion
-46. Detachment
-47. Memory loss
-48. Self-esteem issues
-49. Communication difficulties
-50. Trust issues
-51. Relationship anxiety
-52. Separation anxiety
-53. Over-sensitivity
-54. Fear of failure
-55. Motivation issues
-56. Burnout
-57. Compassion fatigue
-58. Social discomfort
-59. Self-doubt
-60. Anxiety attacks
-61. Conflict avoidance
-62. Helplessness
-63. Irritability
-64. Feeling overwhelmed
-65. Lack of motivation
-66. Perfectionist tendencies
-67. Sleep disorders
-68. Fear of being judged
-69. Unresolved anger
-70. Feelings of inadequacy
-71. Emotional reliance
-72. Emotional numbness
-73. Toxic positivity
-74. Fear of intimacy
-75. Procrastination
-76. Cognitive distortions
-77. Negative thinking
-78. Mood swings
-79. Impaired concentration
-80. Obsessive thinking
-81. Physical tension
-82. Restlessness
-83. Hyperactivity
-84. Mood instability
-85. Anger management issues
-86. Withdrawal
-87. Hypervigilance
-88. Over-eating
-89. Under-eating
-90. Obsessive cleaning
-91. Over-exercising
-92. Crying spells
-93. Low energy
-94. Self-sabotage
-95. Intense guilt
-96. Uncertainty
-97. Cognitive overload
-98. Feelings of powerlessness
-99. Over-dependency
-100. Fear of rejection
+1 anxiety
+2 depression
+3 stress
+4 pressure 
+5 sad
+6 sadness
+7 worried 
+8 anger
+9 guilt
+10 shame: 
+11 loneliness
+12 isolation
+13 fomo
+14 insomnia
+15 fatigue
+16 grief
+17 regret 
+18 envy
+19 fear 
+20 paranoia
+21 overthinking
+22 boredom
+23 insecurity
+24 perfectionism
+25 dissociation 
+26 obsessions
+27 compulsions
+28 impulsivity
+29 addiction
+30 self-harm
+31 eating disorder
+32 body image issues
+33 hoarding
+34 mania
+35 hypomania
+36 psychosis 
+37 schizophrenia
+38 borderline personality disorder
+39 narcissism
+40 antisocial behavior
+41 avoidant behavior
+42 dependent behavior
+43 personality disorders
+44 trauma
+45 PTSD
+46 flashbacks
+47 nightmares
+48 confusion
+49 detachment
+50 memory loss
+51 self-esteem issues
+52 communication difficulties
+53 trust issues
+54 relationship anxiety
+55 separation anxiety
+56 over-sensitivity
+57 failure
+58 success
+59 motivation
+60 burnout
+61 compassion fatigue
+62 discomfort-in-social-situations
+63 self-doubt
+64 anxiety attacks
+65 conflict avoidance
+66 helplessness
+67 irritability
+68 overwhelmed
+69 unmotivation
+70 perfectionist tendencies
+71 sleep
+72 fear-of-being-judged
+73 unresolved anger
+74 inadequate
+75 reliance
+76 emotional numbness
+77 toxic positivity
+78 intimacy
+79 procrastination
+80 criticism
+81 dissatisfaction
+82 anger issues
+83 stuck
+84 exhaustion
+85 self-compassion
+86 depersonalization
+87 avoidance behavior
+88 self-worth
+89 feelings
+90 relax
+91 decisions
+92 trusting yourself
+93 direction
+94 social anxiety
+95 misunderstood
+96 numbness to joy
+97 letting go
+98 isolate
+99 out-of-control
+100 boundaries
