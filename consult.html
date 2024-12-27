@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            padding: 10px;
             flex-direction: column;
         }
 
@@ -28,8 +29,10 @@
             border: 1px solid rgb(245, 80, 231);
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: auto; /* Allow overflow to be visible */
             text-align: center;
-            padding: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
         }
 
         .header {
@@ -41,39 +44,65 @@
             color: white;
         }
 
-        .description {
-            color: white;
-            font-size: 1em;
-            margin: 10px 0;
-        }
-
-        .image-container {
-            margin: 20px 0;
-        }
-
         .image-container img {
             width: 100%;
             height: auto;
-            border-radius: 5px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: center;
+            margin-top: 20px; /* Add space above the buttons */
         }
 
         .button {
             display: block;
             width: 90%;
             padding: 15px;
-            margin: 20px auto;
+            margin: 10px auto;
             border-radius: 5px;
             text-align: center;
+            text-decoration: none;
             font-size: 16px;
             font-weight: bold;
             color: white;
-            background-color: #f840e0;
             border: none;
             cursor: pointer;
         }
 
+        .button.speak {
+            background-color: #f840e0;
+        }
+
+        .button.listen {
+            background-color: white;
+            color: #000;
+        }
+
+        .button.instructions {
+            background-color: red;
+            color: white;
+            text-decoration: none;
+        }
+
         .button:hover {
             opacity: 0.9;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .note {
+            font-size: 14px;
+            color: white;
+            background-color: #333;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #fff;
         }
 
         /* Media Query for smaller screens */
@@ -93,15 +122,32 @@
                 font-size: 1.2em;
                 padding: 10px;
             }
+
+            .note {
+                font-size: 12px;
+            }
         }
-        .note {
-            font-size: 14px;
-            color: white;
-            background-color: #333;
+
+        .input-container input {
             padding: 10px;
-            margin-top: 10px;
+            width: 80%;
+            margin-right: 10px;
             border-radius: 5px;
-            border: 1px solid #fff;
+            border: 1px solid #ccc;
+        }
+
+        .input-container button {
+            padding: 10px;
+            background-color: rgb(28, 226, 28);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .input-container button:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -112,11 +158,11 @@
         <div class="image-container">
             <img src="Animation.gif" alt="P.O.O.J.A">
         </div>
-        <button class="button" onclick="askPooja()">Ask P.O.O.J.A</button>
-        <button class="button" style="margin-bottom: 10px;";><a href="index.html"style="text-decoration: none; color: white;">Go back to P.O.O.J.A</a></button>
+        <button class="button" onclick="askPooja() " style="background-color: #f840e0;">Ask P.O.O.J.A</button>
+        <button class="button" style="margin-bottom: 10px;";><a href="index.html"style="text-decoration: none; color: black; background-color: white">Go back to P.O.O.J.A Home page</a></button>
     </div>
     <div class="note">
-        <strong>Note:</strong>Over 100 mental health issues are supported but some may not be supported
+        <strong>Note:</strong>Over 100 mental health issues are supported but some issues may not be supported.
     </div>
 
     <script>
