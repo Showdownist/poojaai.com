@@ -3,230 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P.O.O.J.A</title>
+    <title>P.O.O.J.A Emotional Support AI</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
         }
 
         body {
             background-color: black;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            padding: 10px;
+            padding: 20px;
             flex-direction: column;
         }
 
         .container {
             background-color: black;
-            width: 375px;
+            width: 400px;
             max-width: 100%;
-            border: 1px solid rgb(245, 80, 231);
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: auto; /* Allow overflow to be visible */
-            text-align: center;
+            border: 2px solid #f550e7;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(245, 80, 231, 0.1);
+            overflow: hidden;
             margin-bottom: 20px;
-            padding-bottom: 20px;
         }
 
         .header {
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1.5em;
+            padding: 25px 25px 5px 25px;
+            text-align: center;
             background-color: black;
-            border-bottom: 1px solid rgb(237, 57, 243);
+            border-bottom: 2px solid #f550e7;
+            color: #f550e7;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .description {
+            padding: 0 25px 25px 25px;
+            text-align: center;
+            background-color: black;
             color: white;
+            font-size: 0.9em;
+            border-bottom: 2px solid #f550e7;
+        }
+
+        .image-container {
+            padding: 20px;
+            background-color: black;
         }
 
         .image-container img {
             width: 100%;
             height: auto;
+            border-radius: 10px;
         }
 
         .button-container {
+            padding: 20px;
             display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            align-items: center;
-            margin-top: 20px; /* Add space above the buttons */
+            flex-direction: column;
+            gap: 15px;
         }
 
         .button {
-            display: block;
             width: 90%;
             padding: 15px;
-            margin: 10px auto;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
+            border-radius: 12px;
+            border: 2px solid #f550e7;
             font-size: 16px;
-            font-weight: bold;
-            color: white;
-            border: none;
+            font-weight: 500;
             cursor: pointer;
-        }
-
-        .button.speak {
-            background-color: #f840e0;
-        }
-
-        .button.listen {
-            background-color: white;
-            color: #000;
-        }
-
-        .button.instructions {
-            background-color: red;
-            color: white;
+            transition: all 0.3s ease;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            background-color: transparent;
+        }
+
+        .button.ask-pooja {
+            background-color: #f550e7;
+            color: white;
+        }
+
+        .button.home {
+            background-color: white;
+            color: black;
+            border-color: white;
+        }
+
+        .button.commands {
+            background-color: #ff3333;
+            color: white;
+            border-color: #ff3333;
         }
 
         .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 80, 231, 0.2);
             opacity: 0.9;
+        }
+
+        .note {
+            background-color: black;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            color: #ffffff;
+            max-width: 400px;
+            box-shadow: 0 5px 15px black;
+            line-height: 1.6;
+            border: 2px solid #f550e7;
+            margin-top: 20px;
+        }
+
+        .note strong {
+            color: #f550e7;
         }
 
         a {
             text-decoration: none;
-            color: white;
+            color: inherit;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .note {
-            font-size: 14px;
-            color: white;
-            background-color: #333;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #fff;
-        }
-
-        /* Media Query for smaller screens */
-        @media (max-width: 400px) {
+        @media (max-width: 480px) {
             .container {
                 width: 100%;
-                padding: 15px;
+                margin: 10px;
             }
 
             .button {
-                width: 100%;
-                padding: 12px;
-                font-size: 14px;
+                width: 95%;
             }
 
             .header {
-                font-size: 1.2em;
-                padding: 10px;
+                font-size: 1.3em;
+                padding: 15px 15px 5px 15px;
+            }
+
+            .description {
+                padding: 0 15px 15px 15px;
             }
 
             .note {
-                font-size: 12px;
+                font-size: 13px;
+                padding: 15px;
             }
-        }
-
-        .input-container input {
-            padding: 10px;
-            width: 80%;
-            margin-right: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .input-container button {
-            padding: 10px;
-            background-color: rgb(28, 226, 28);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .input-container button:hover {
-            opacity: 0.9;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">P.O.O.J.A Emotional Support AI</div>
-        <p class="description">Personalized Online Outreach for Joy and Assistance</p>
+        <p class="description" style="padding-top: 20px;">Personalized Online Outreach for Joy and Assistance</p>
         <div class="image-container">
             <img src="Animation.gif" alt="P.O.O.J.A">
         </div>
-        <button class="button" onclick="askPooja() " style="background-color: #f840e0;">Ask P.O.O.J.A</button>
-        <button class="button" style="margin-bottom: 10px;";><a href="index.html"style="text-decoration: none; color: black; background-color: white">Go back to P.O.O.J.A Home page</a></button>
-        <button class="button" style="margin-bottom: 10px;background-color: red" ;><a href="list.txt"style="text-decoration: none; color: white; background-color: red">Check available commands for each issue.</a></button>
+        <div class="button-container">
+            <button class="button ask-pooja" onclick="askPooja()">
+                💭 Ask P.O.O.J.A
+            </button>
+            <button class="button home">
+                <a href="index.html">🏠 Back to P.O.O.J.A Home page</a>
+            </button>
+            <button class="button commands">
+                <a href="list.txt">📋 Check available commands for each issue</a>
+            </button>
+        </div>
     </div>
+
     <div class="note">
-        <strong>Note:</strong>Over 100 mental health issues are supported but some issues may not be supported.
+        <strong>Note:</strong> Over 100 mental health issues are supported but some issues may not be supported.
     </div>
-
-    <script>
-        // Initial greeting when the page loads
-        window.onload = function() {
-            speak("Pooja artificial intelligence for immediate help activated. Welcome dear.");
-        };
-
-        function askPooja() {
-            speak("Listening..");
-            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.interimResults = false;
-
-            recognition.onresult = function(event) {
-                const userInput = event.results[0][0].transcript.toLowerCase();
-                fetch('advice.txt')
-                    .then(response => response.text())
-                    .then(data => {
-                        const adviceMap = parseAdvice(data);
-
-                        for (const [keyword, advices] of Object.entries(adviceMap)) {
-                            if (userInput.includes(keyword)) {
-                                const adviceArray = advices.split('|');
-                                const randomAdvice = adviceArray[Math.floor(Math.random() * adviceArray.length)];
-                                speak(randomAdvice);
-                                return;
-                            }
-                        }
-
-                        speak("I'm here to help, but I didn't catch a specific concern. Please try again.");
-                    })
-                    .catch(error => {
-                        console.error("Error fetching advice file:", error);
-                        speak("I couldn't access the advice at the moment. Please try again later.");
-                    });
-            };
-
-            recognition.onerror = function(event) {
-                console.error("Speech recognition error:", event.error);
-                speak("Sorry, I couldn't hear you properly. Please try again.");
-            };
-
-            recognition.start();
-        }
-
-        function parseAdvice(data) {
-            const adviceMap = {};
-            const lines = data.split('\n');
-
-            lines.forEach(line => {
-                const [keyword, advices] = line.split(':');
-                if (keyword && advices) {
-                    adviceMap[keyword.trim().toLowerCase()] = advices.trim();
-                }
-            });
-
-            return adviceMap;
-        }
-
-        function speak(message) {
-            const utterance = new SpeechSynthesisUtterance(message);
-            speechSynthesis.speak(utterance);
-        }
-    </script>
 </body>
 </html>

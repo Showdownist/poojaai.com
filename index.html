@@ -3,192 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P.O.O.J.A</title>
+    <title>P.O.O.J.A - Mental Health Support</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
         }
 
         body {
             background-color: black;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            padding: 10px;
+            padding: 20px;
             flex-direction: column;
         }
 
         .container {
             background-color: black;
-            width: 375px;
+            width: 400px;
             max-width: 100%;
-            border: 1px solid rgb(245, 80, 231);
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: auto; /* Allow overflow to be visible */
-            text-align: center;
+            border: 2px solid #f550e7;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(245, 80, 231, 0.1);
+            overflow: hidden;
             margin-bottom: 20px;
-            padding-bottom: 20px;
         }
 
         .header {
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1.5em;
+            padding: 25px;
+            text-align: center;
             background-color: black;
-            border-bottom: 1px solid rgb(237, 57, 243);
+            border-bottom: 2px solid #f550e7;
             color: white;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #f550e7;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+            color: #ffffff;
+        }
+
+        .image-container {
+            padding: 20px;
+            background-color: black;
         }
 
         .image-container img {
             width: 100%;
             height: auto;
+            border-radius: 10px;
         }
 
         .button-container {
+            padding: 20px;
             display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            align-items: center;
-            margin-top: 20px; /* Add space above the buttons */
+            flex-direction: column;
+            gap: 12px;
         }
 
         .button {
-            display: block;
-            width: 90%;
-            padding: 15px;
-            margin: 10px auto;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
+            padding: 16px;
+            border-radius: 12px;
+            border: 2px solid #f550e7;
             font-size: 16px;
-            font-weight: bold;
-            color: white;
-            border: none;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
         }
 
         .button.speak {
-            background-color: #f840e0;
+            background-color: #f550e7;
+            color: white;
         }
 
         .button.listen {
-            background-color: white;
-            color: #000;
+            background-color: black;
+            color: #f550e7;
         }
 
         .button.instructions {
-            background-color: red;
+            background-color: #ff3333;
             color: white;
-            text-decoration: none;
+            border-color: #ff3333;
+        }
+
+        .button.human-help {
+            background-color: #eea907;
+            color: black;
+            border-color: #eea907;
+        }
+
+        .button.emergency {
+            background-color: #ff3333;
+            color: white;
+            border-color: #ff3333;
         }
 
         .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 80, 231, 0.2);
             opacity: 0.9;
-        }
-
-        a {
-            text-decoration: none;
-            color: white;
         }
 
         .note {
+            background-color: black;
+            padding: 15px 20px;
+            border-radius: 12px;
             font-size: 14px;
-            color: white;
-            background-color: #333;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #fff;
+            color: #ffffff;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            line-height: 1.5;
+            border: 2px solid #f550e7;
+            margin-top: 20px;
         }
 
-        /* Media Query for smaller screens */
-        @media (max-width: 400px) {
+        .note strong {
+            color: #f550e7;
+        }
+
+        @media (max-width: 480px) {
             .container {
                 width: 100%;
-                padding: 15px;
+                margin: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
             }
 
             .button {
-                width: 100%;
-                padding: 12px;
-                font-size: 14px;
-            }
-
-            .header {
-                font-size: 1.2em;
-                padding: 10px;
-            }
-
-            .note {
-                font-size: 12px;
+                padding: 14px;
+                font-size: 15px;
             }
         }
-
-        .input-container input {
-            padding: 10px;
-            width: 80%;
-            margin-right: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .input-container button {
-            padding: 10px;
-            background-color: rgb(28, 226, 28);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .input-container button:hover {
-            opacity: 0.9;
-        }
-
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">P.O.O.J.A Emotional Support AI</div>
-        <div class="header"> <P style="font-size:small ;">Personalized Online Outreach for Joy and Assistance</P> </div>
-        <div class="image-container">
-            <img src="Animation.gif" alt="P.O.O.J.A">
+        <div class="header">
+            <h1>P.O.O.J.A</h1>
+            <p>Personalized Online Outreach for Joy and Assistance</p>
         </div>
-        <button class="button speak" onclick="loadScript('speak.js')">Let P.O.O.J.A Speak</button>
-        <button class="button listen" onclick="loadScript('listen.js')">Let P.O.O.J.A Listen</button>
-        <button class="button instructions" onclick="window.open('HOW TO USE.pdf')">Instructions</button>
-        <button class="button instructions" style="background-color: rgb(238, 238, 7); color: black;"><a style="color: black;" href="serious.html">Ask a Real Human</a></button>
-        <button class="button instructions" style="background-color: rgb(238, 169, 7); color: black;"><a style="color: white;" href="consult.html">Immediate Assistance </a></button>
+        
+        <div class="image-container">
+            <img src="Animation.gif" alt="P.O.O.J.A AI Assistant">
+        </div>
+
+        <div class="button-container">
+            <button class="button speak" onclick="loadScript('speak.js')">
+                🎤 Let P.O.O.J.A Speak
+            </button>
+            <button class="button listen" onclick="loadScript('listen.js')">
+                👂 Let P.O.O.J.A Listen
+            </button>
+            <button class="button instructions" onclick="window.open('HOW TO USE.pdf')">
+                📖 Instructions
+            </button>
+            <a href="serious.html" class="button human-help">
+                🤝 Ask a Real Human
+            </a>
+            <a href="consult.html" class="button emergency">
+                ⚡ Immediate Assistance
+            </a>
+        </div>
     </div>
 
     <div class="note">
-        <strong>Note:</strong> Only one model can run at the time of loading the page. To switch models, please say "exit" and refresh the page, then choose the other model. Refresh the page if it's not working correctly.
+        <strong>Note:</strong> Only one model can run at a time. To switch models, please say "exit" and refresh the page, then choose the other model. Refresh the page if it's not working correctly.
     </div>
 
     <script>
         function loadScript(scriptName) {
-            // Check if the script is already loaded
             const existingScript = document.querySelector(`script[src="${scriptName}"]`);
             if (existingScript) {
                 console.log(`${scriptName} is already loaded.`);
                 return;
             }
 
-            // Create a new script element
             const script = document.createElement('script');
             script.src = scriptName;
             script.type = 'text/javascript';
-
-            // Optional: Handle script load events
-            script.onload = () => console.log(`${scriptName} has been loaded successfully.`);
+            
+            script.onload = () => console.log(`${scriptName} loaded successfully.`);
             script.onerror = () => console.error(`Failed to load ${scriptName}.`);
-
-            // Append the script to the document
+            
             document.body.appendChild(script);
         }
     </script>
