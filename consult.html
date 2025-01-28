@@ -186,5 +186,67 @@
     <div class="note">
         <strong>Note:</strong> Over 100 mental health issues are supported but some issues may not be supported.
     </div>
+    <script>
+        // Initial greeting when the page loads
+        window.onload = function() {
+            speak("Pooja artificial intelligence for immediate help activated. Welcome dear.");
+        };
+
+        function askPooja() {
+            speak("Listening..");
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.interimResults = false;
+
+            recognition.onresult = function(event) {
+                const userInput = event.results[0][0].transcript.toLowerCase();
+                fetch('advice.txt')
+                    .then(response => response.text())
+                    .then(data => {
+                        const adviceMap = parseAdvice(data);
+
+                        for (const [keyword, advices] of Object.entries(adviceMap)) {
+                            if (userInput.includes(keyword)) {
+                                const adviceArray = advices.split('|');
+                                const randomAdvice = adviceArray[Math.floor(Math.random() * adviceArray.length)];
+                                speak(randomAdvice);
+                                return;
+                            }
+                        }
+
+                        speak("I'm here to help, but I didn't catch a specific concern. Please try again.");
+                    })
+                    .catch(error => {
+                        console.error("Error fetching advice file:", error);
+                        speak("I couldn't access the advice at the moment. Please try again later.");
+                    });
+            };
+
+            recognition.onerror = function(event) {
+                console.error("Speech recognition error:", event.error);
+                speak("Sorry, I couldn't hear you properly. Please try again.");
+            };
+
+            recognition.start();
+        }
+
+        function parseAdvice(data) {
+            const adviceMap = {};
+            const lines = data.split('\n');
+
+            lines.forEach(line => {
+                const [keyword, advices] = line.split(':');
+                if (keyword && advices) {
+                    adviceMap[keyword.trim().toLowerCase()] = advices.trim();
+                }
+            });
+
+            return adviceMap;
+        }
+
+        function speak(message) {
+            const utterance = new SpeechSynthesisUtterance(message);
+            speechSynthesis.speak(utterance);
+        }
+    </script>
 </body>
 </html>
